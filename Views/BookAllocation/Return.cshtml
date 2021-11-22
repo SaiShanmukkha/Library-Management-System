@@ -1,0 +1,57 @@
+﻿@model LibrarySystem.Models.BookAllocation
+
+<h1>Book Return:</h1>
+
+<div class="container center_div">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" asp-action="ReturnBook" asp-controller="BookAllocation" autocomplete="off">
+                <input asp-for="BookAllocationId" hidden />
+                <input type="text" class="form-control" asp-for="IsBookSubmitted" value="true" style="display:none" />
+                <div class="form-group form-row">
+                    <label>Book Id:</label>
+                    <input type="text" class="form-control" asp-for="BookId" value="@Model.BookId" readonly />
+                </div>
+
+                <div class="form-group form-row">
+                    <label>Book Name:</label>
+                    <input type="text" class="form-control" value="@ViewBag.BookData.BookName" readonly />
+                </div>
+
+                <div class="form-group form-row">
+                    <label>Member Id:</label>
+                    <input class="form-control" asp-for="MemberId" value="@Model.MemberId" readonly/>
+                </div>
+
+                <div class="form-group form-row">
+                    <label>Member Name:</label>
+                    <input class="form-control" value="@ViewBag.MemberData.MemberName" readonly />
+                </div>
+
+                <div class="form-group form-row">
+                    <label>Issue Date:</label>
+                    <input type="datetime" class="form-control" asp-for="IssueDate" value="@Model.IssueDate" readonly />
+                </div>
+
+                <div class="form-group form-row">
+                    <label>Due Date:</label>
+                    <input type="datetime" class="form-control" asp-for="DueDate" value="@Model.DueDate" readonly />
+                </div>
+
+                <div class="form-group form-row">
+                    <label>Return Date:</label>
+                    <input type="datetime" class="form-control" asp-for="ReturnDate" value="@DateTime.Now" readonly />
+                </div>
+
+                <div class="form-group form-row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-success w-75" value="Return" />
+                    </div>
+                    <div class="col-6">
+                        <a class="nav-link text-white w-75 btn btn-secondary" asp-area="" asp-controller="BookAllocation" asp-action="Index">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

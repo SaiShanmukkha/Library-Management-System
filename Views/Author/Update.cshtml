@@ -1,0 +1,54 @@
+﻿@model LibrarySystem.Models.Author
+
+
+<h1>Enter Author Details:</h1>
+
+<div class="container center_div">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" asp-action="Update" autocomplete="off">
+                <input asp-for="AuthorId" hidden/>
+                <div class="form-group form-row">
+                    <label asp-for="AuthorName"></label>
+                    <input type="text" class="form-control" asp-for="AuthorName" />
+                    <span asp-validation-for="AuthorName" class="text-danger"></span>
+                </div>
+                <div class="form-group form-row">
+                    <label asp-for="PhoneNumber"></label>
+                    <input type="number" class="form-control" asp-for="PhoneNumber" maxlength="10" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group form-row">
+                    <label asp-for="Email"></label>
+                    <input type="text" class="form-control" asp-for="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group form-row">
+                    <label asp-for="AuthorExpertise"></label>
+                    <input type="text" class="form-control" asp-for="AuthorExpertise" />
+                    <span asp-validation-for="AuthorExpertise" class="text-danger"></span>
+                </div>
+                <div class="form-group form-row">
+                    <label asp-for="AuthorCountry"></label>
+                    <input type="text" class="form-control" asp-for="AuthorCountry" />
+                    <span asp-validation-for="AuthorCountry" class="text-danger"></span>
+                </div>
+                <div class="form-group form-row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-info w-75" value="Update" />
+                    </div>
+                    <div class="col-6">
+                        <a class="nav-link text-white w-75 btn btn-danger" asp-area="" asp-controller="Author" asp-action="Index">Back</a>
+                    </div>
+                </div>
+                @*<div asp-validation-summary="All" class="text-danger"></div>*@
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

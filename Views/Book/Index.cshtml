@@ -1,0 +1,56 @@
+﻿@model IEnumerable<LibrarySystem.Models.Book>
+
+
+<div class="container p-3">
+    <div class="row p-4">
+        <div class="col-6">
+            <h2 class="text-primary">Books List:</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Book" asp-action="Create" class="btn btn-primary">Add New Book</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-secondary table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Book Name
+                    </th>
+                    <th>
+                       Book Language
+                    </th>
+                    <th>
+                        Year Published
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td width="25%">@book.BookName</td>
+                        <td width="25%">@book.BookLanguage</td>
+                        <td width="25%">@book.BookYear</td>
+                        <td width="25%">
+                            <div class="text-center btn-group w-100">
+                                <a class="btn btn-primary mx-1 text-white" asp-controller="Book" asp-action="Update" asp-route-Id="@book.BookId">Update</a>
+                                <a class="btn btn-danger mx-1 text-white" asp-controller="Book" asp-action="Delete" asp-route-Id="@book.BookId">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-center">No Books</p>
+    }
+</div>

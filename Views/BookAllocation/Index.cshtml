@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "Book Allocation";
+}
+
+<h1>Book Allocation:</h1>
+<hr />
+
+
+@using (Html.BeginForm("Index", "BookAllocation", FormMethod.Get))
+{
+    @Html.TextBox("bname")
+    <input type="submit" class="btn btn-primary text-white ml-1" value="Search" />
+}
+
+<hr />
+
+@if (ViewBag.haveData)
+{
+    <p>General Due Period: 7 Days</p>
+    <div class="allocation-table">
+        <table class="table table-bordered table-responsive table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>BookId</th>
+                    <th>Book Name</th>>
+                    <th>Book Status</th>>
+                    <th>Allocated to</th>
+                    <th>Issue Date</th>
+                    <th>Due Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-hover">
+                @foreach (var item in ViewBag.SearchList)
+                {
+                    <tr>
+                        <td>@item.BookId</td>
+                        <td>@item.BookName</td>
+                        @if (item.isBookAvailable)
+                        {
+                            <td>Available</td>
+                        }
+                        else
+                        {
+                            <td>Not Available</td>
+                        }
+                        <td> @item.MemberName</td>
+
+                        @if (item.IssueDate.Equals(DateTime.MinValue))
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@item.DueDate</td>
+                        }
+                        @if (item.DueDate.Equals(DateTime.MinValue))
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@item.DueDate</td>
+                        }
+                        <td>
+                            <div class="text-center btn-group w-100">
+                                @if (item.isBookAvailable)
+                                {
+                                    <a class="btn btn-outline-danger" asp-controller="BookAllocation" asp-action="Issue" asp-route-Id="@item.BookId">Issue Book</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-outline-success" asp-controller="BookAllocation" asp-action="Return" asp-route-Id="@item.BookId">Return Book</a>
+                                }
+                                <a class="btn mx-1 btn-outline-info" asp-controller="Book" asp-action="Show" asp-route-Id="@item.BookId">Book Details</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
