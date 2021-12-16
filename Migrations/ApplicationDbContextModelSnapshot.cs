@@ -154,6 +154,9 @@ namespace LibrarySystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("LibraryName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("MemberDOB")
                         .HasColumnType("datetime2")
                         .HasColumnName("Date of Birth");
@@ -168,6 +171,12 @@ namespace LibrarySystem.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
+                    b.Property<int>("MemberTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OtherCountry")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("PhoneNumber")
                         .HasMaxLength(10)
                         .HasColumnType("bigint");
@@ -176,14 +185,38 @@ namespace LibrarySystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SSN")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("StreetAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Street Address");
 
+                    b.Property<string>("languagesKnown")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("MemberId");
 
+                    b.HasIndex("MemberTypeId");
+
                     b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("LibrarySystem.Models.MemberType", b =>
+                {
+                    b.Property<int>("MemberTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("MemberTypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MemberTypeId");
+
+                    b.ToTable("MemberTypes");
                 });
 
             modelBuilder.Entity("LibrarySystem.Models.Book", b =>
@@ -214,6 +247,17 @@ namespace LibrarySystem.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("LibrarySystem.Models.Member", b =>
+                {
+                    b.HasOne("LibrarySystem.Models.MemberType", "MemberType")
+                        .WithMany()
+                        .HasForeignKey("MemberTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MemberType");
                 });
 #pragma warning restore 612, 618
         }

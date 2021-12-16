@@ -10,9 +10,11 @@ namespace LibrarySystem.Models.DataVM
         public int BookAllocationId { get; set; }
         public DateTime IssueDate { get; set; }
         public DateTime DueDate { get; set; }
+        public DateTime ReturnDate { get; set; }
         public bool IsBookSubmitted { get; set; }
         public int BookId { get; set; }
         public string BookName { get; set; }
+        public string AuthorName { get; set; }
         public int MemberId { get; set; }
         public string MemberName { get; set; }
         public bool isBookAvailable { get; set; }
@@ -20,3 +22,4 @@ namespace LibrarySystem.Models.DataVM
 
     }
 }
+

@@ -1,69 +1,172 @@
 ﻿@model LibrarySystem.Models.Member
 
+@{
+    ViewData["Title"] = "Create Member";
+}
 
-<h1>Enter User Details:</h1>
+<h1 class="text-info">Enter User Details:</h1>
 
 <div class="container center_div">
     <div class="row">
-        <div class="col-md-6">
-            <form method="post" asp-action="Create" autocomplete="off">
+        <div class="col-md-9" style="">
+
+            <form id="memberForm" method="post" asp-action="Create" autocomplete="off">
+
                 <div class="form-group form-row">
-                    <label asp-for="MemberName"></label>
-                    <input type="text" class="form-control" asp-for="MemberName" />
+                    <label asp-for="MemberName" class="head-label"></label>
+                    <input id="MemberName" type="text" class="form-control" asp-for="MemberName" />
                     <span asp-validation-for="MemberName" class="text-danger"></span>
                 </div>
-                <div class="form-group form-row">
-                    <label asp-for="MemberGender"></label>
-                    <select type="text" class="form-control" asp-for="MemberGender">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
+                @Html.AntiForgeryToken()
+
+                <div class="row m-2">
+                    <div class="col-3">
+                        <label style="font:500;" class="head-label">
+                            Gender&emsp;
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <label>
+                            <input type="radio" class="radio m-1" id="MemberGender" asp-for="MemberGender" value="Male" />Male
+                        </label>
+                    </div>
+                    <div class="col-2">
+                        <label>
+                            <input type="radio" class="radio m-1" id="MemberGender" asp-for="MemberGender" value="Female" />Female
+                        </label>
+                    </div>
                 </div>
+
+
                 <div class="form-group form-row">
-                    <label asp-for="MemberDOB"></label>
-                    <input type="date" class="form-control" asp-for="MemberDOB" min="1920-01-01"/>
+                    <label asp-for="MemberDOB" class="head-label"></label>
+                    <input id="dateChange" type="date" class="form-control" asp-for="MemberDOB" min="1920-01-01" />
                     <span asp-validation-for="MemberDOB" class="text-danger"></span>
                 </div>
+
+                <div id="ageField" class="form-group form-row" style="display:none">
+                    <label class="head-label">Member Age</label>
+                    <input id="age" type="text" class="form-control" readonly />
+                </div>
+
+
                 <div class="form-group form-row">
-                    <label asp-for="PhoneNumber"></label>
-                    <input type="number" class="form-control" asp-for="PhoneNumber" maxlength="10" />
+                    <label asp-for="PhoneNumber" class="head-label"></label>
+                    <input id="PhoneNumber" type="number" class="form-control" asp-for="PhoneNumber" maxlength="10" value="" min="1111111111" max="9999999999" />
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div class="form-group form-row">
-                    <label asp-for="Email"></label>
-                    <input type="text" class="form-control" asp-for="Email" />
+                    <label asp-for="Email" class="head-label"></label>
+                    <input id="Email" type="email" class="form-control" asp-for="Email" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group form-row">
-                    <label asp-for="Profession"></label>
-                    <input type="text" class="form-control" asp-for="Profession" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label asp-for="Profession" class="head-label"></label>
+                    <input id="Profession" type="text" class="form-control" asp-for="Profession" />
+                    <span asp-validation-for="Profession" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-row">
+                    <label asp-for="MemberTypeId" class="head-label"></label>
+                    <select id="MemberTypeId" type="text" class="form-control" asp-for="MemberTypeId">
+                        <option value="0">--Select--</option>
+                    </select>
+                    <span asp-validation-for="MemberTypeId" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <div class="row">
+                        <label class="head-label">
+                            Languages Known:
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="list-group col-6">
+                            <label><input class="list-group-item" type="checkbox" value="English" />&emsp;English</label>
+                            <label><input class="list-group-item" type="checkbox" value="Japanese" />&emsp;Japanese</label>
+                            <label><input class="list-group-item" type="checkbox" value="Hindi" />&emsp;Hindi</label>
+                            <label><input class="list-group-item" type="checkbox" value="Russian" />&emsp;Russian</label>
+                            <label><input class="list-group-item" type="checkbox" value="Chinese" />&emsp;Chinese</label>
+                        </div>
+                        <div class="list-group col-6">
+                            <label><input class="list-group-item" type="checkbox" value="Korean" />&emsp;Korean</label>
+                            <label><input class="list-group-item" type="checkbox" value="Arabic" />&emsp;Arabic</label>
+                            <label><input class="list-group-item" type="checkbox" value="Spanish" />&emsp;Spanish</label>
+                            <label><input class="list-group-item" type="checkbox" value="French" />&emsp;French</label>
+                            <label><input class="list-group-item" type="checkbox" value="Others" />&emsp;Others</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group form-row">
-                    <label asp-for="StreetAddress"></label>
-                    <textarea class="form-control" asp-for="StreetAddress"></textarea>
-                    <span asp-validation-for="StreetAddress" class="text-danger"></span>
-                </div>
-                <div class="form-group form-row">
-                    <label asp-for="City"></label>
-                    <input type="text" class="form-control" asp-for="City" />
-                    <span asp-validation-for="City" class="text-danger"></span>
-                </div>
-                <div class="form-group form-row">
-                    <label asp-for="Country"></label>
-                    <input type="text" class="form-control" asp-for="Country" />
+                    <label asp-for="Country" class="head-label"></label>
+                    <select id="countrySelect" type="text" class="form-control" asp-for="Country">
+                        <option hidden selected>Select one...</option>
+                        <option>Other</option>
+                        <option>USA</option>
+                    </select>
                     <span asp-validation-for="Country" class="text-danger"></span>
                 </div>
+                <div id="OtherCountry" class="form-group form-row" style="display:none">
+                    <label class="head-label">Enter Other Country Name</label>
+                    <input id="OtherCountry" type="text" class="form-control" asp-for="OtherCountry" />
+                    <span asp-validation-for="OtherCountry" class="text-danger"></span>
+                </div>
+                <div class="form-group form-row">
+                    <label asp-for="StreetAddress" class="head-label"></label>
+                    <textarea id="StreetAddress" class="form-control" asp-for="StreetAddress"></textarea>
+                    <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                </div>
+                <input type="text" hidden value="" asp-for="languagesKnown" id="languagesKnown" />
+                <div class="form-group form-row">
+                    <label asp-for="City" class="head-label"></label>
+                    <input id="City" type="text" class="form-control" asp-for="City" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+
+                <div id="SSNField" class="form-group form-row" style="display:none">
+                    <label asp-for="SSN" class="head-label"></label>
+                    <input id="SSN" type="text" class="form-control" asp-for="SSN" required />
+                    <span asp-validation-for="SSN" class="text-danger"></span>
+                </div>
+
+                <div class="row m-2">
+                    <div class="col-5">
+                        <label class="head-label">
+                            Enrolled in another Library?&emsp;
+                        </label>
+                    </div>
+                    <div class="col-2">
+                        <label>
+                            <input type="radio" class="radio" id="lib" name="lib" value="Yes" onclick="getRadioValue(this)" />Yes
+                        </label>
+                    </div>
+                    <div class="col-2">
+                        <label>
+                            <input type="radio" class="radio" name="lib" value="No" onclick="getRadioValue(this)" />No
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <label>
+                            <input type="radio" class="radio" name="lib" value="No" onclick="getRadioValue(this)" />Not Sure
+                        </label>
+                    </div>
+                </div>
+
+                <div id="otherLib" class="form-group form-row">
+                    <label asp-for="LibraryName" class="head-label"></label>
+                    <input id="LibraryName" type="text" class="form-control" asp-for="LibraryName" />
+                </div>
+            </form>
                 <div class="form-group form-row">
                     <div class="col-6">
-                        <input type="submit" class="btn btn-info w-75" value="Create" />
+                        <button id="memberSubmit" class="btn btn-info w-75" onclick="selldata();">Submit</button>
                     </div>
                     <div class="col-6">
                         <a class="nav-link text-white w-75 btn btn-danger" asp-area="" asp-controller="Member" asp-action="Index">Back</a>
                     </div>
                 </div>
                 @*<div asp-validation-summary="All" class="text-danger"></div>*@
-            </form>
+          
         </div>
     </div>
 </div>
@@ -71,5 +174,8 @@
 @section Scripts{
     @{
         <partial name="_ValidationScriptsPartial" />
+
     }
+    <script src="~/js/MemberJs/member.js"></script>
 }
+

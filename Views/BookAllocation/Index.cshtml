@@ -1,34 +1,48 @@
 ﻿
 @{
     ViewData["Title"] = "Book Allocation";
+    //TempData["BName"] = Context.Request.Query["BName"];
+    //TempData["AName"] = Context.Request.Query["AName"];
 }
 
-<h1>Book Allocation:</h1>
-<hr />
+<div>
+    <h2 class="text-info">Book Allocations</h2>
+    <hr />
+</div>
 
 
 @using (Html.BeginForm("Index", "BookAllocation", FormMethod.Get))
 {
-    @Html.TextBox("bname")
-    <input type="submit" class="btn btn-primary text-white ml-1" value="Search" />
+    <div class="row">
+        <div class="col-lg-4">
+            <label>Enter Book Name:&emsp;</label>
+            @Html.TextBox("BName")
+        </div>
+        <div class="col-lg-4">
+            <label>Enter Author Name:&nbsp; </label>
+            @Html.TextBox("AName")
+        </div>
+        <div class="col-lg-2">
+            <input type="submit" class="btn btn-primary text-white" value="Search" />
+        </div>
+    </div>
 }
-
 <hr />
-
 @if (ViewBag.haveData)
 {
     <p>General Due Period: 7 Days</p>
     <div class="allocation-table">
-        <table class="table table-bordered table-responsive table-sm">
+        <table class="table table-bordered table-responsive table-secondary table-sm small-font">
             <thead class="thead-dark">
                 <tr>
                     <th>BookId</th>
-                    <th>Book Name</th>>
-                    <th>Book Status</th>>
+                    <th>Book Name</th>
+                    <th>Author Name</th>
+                    <th>Book Status</th>
                     <th>Allocated to</th>
                     <th>Issue Date</th>
                     <th>Due Date</th>
-                    <th>Actions</th>
+                    <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody class="table-hover">
@@ -37,6 +51,7 @@
                     <tr>
                         <td>@item.BookId</td>
                         <td>@item.BookName</td>
+                        <td>@item.AuthorName</td>
                         @if (item.isBookAvailable)
                         {
                             <td>Available</td>
@@ -53,7 +68,7 @@
                         }
                         else
                         {
-                            <td>@item.DueDate</td>
+                            <td>@item.IssueDate</td>
                         }
                         @if (item.DueDate.Equals(DateTime.MinValue))
                         {
@@ -67,13 +82,13 @@
                             <div class="text-center btn-group w-100">
                                 @if (item.isBookAvailable)
                                 {
-                                    <a class="btn btn-outline-danger" asp-controller="BookAllocation" asp-action="Issue" asp-route-Id="@item.BookId">Issue Book</a>
+                                    <a class="btn btn-outline-danger small-font" asp-controller="BookAllocation" asp-action="Issue" asp-route-Id="@item.BookId">Issue Book</a>
                                 }
                                 else
                                 {
-                                    <a class="btn btn-outline-success" asp-controller="BookAllocation" asp-action="Return" asp-route-Id="@item.BookId">Return Book</a>
+                                    <a class="btn btn-outline-success small-font" asp-controller="BookAllocation" asp-action="Return" asp-route-Id="@item.BookId">Return Book</a>
                                 }
-                                <a class="btn mx-1 btn-outline-info" asp-controller="Book" asp-action="Show" asp-route-Id="@item.BookId">Book Details</a>
+                                <a class="btn mx-1 btn-outline-info small-font" asp-controller="Book" asp-action="Show" asp-route-Id="@item.BookId">Book Details</a>
                             </div>
                         </td>
                     </tr>
@@ -81,4 +96,8 @@
             </tbody>
         </table>
     </div>
+}
+else
+{
+    <p class="text-center">@ViewBag.message</p>
 }

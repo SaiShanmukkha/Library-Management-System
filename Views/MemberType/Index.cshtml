@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Member Type";
+}
+
+
+<div>
+    <div class="row">
+        <h2 class="col-lg-4 text-info">Member Types</h2>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary mx-3 col-auto" type="button" data-toggle="modal" data-target="#createModalCenter">
+            Add
+        </button>
+    </div>
+</div>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8" id="memberTypeTable">
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Create Modal for MemberType -->
+
+<div class="modal fade" id="createModalCenter" tabindex="-1" role="dialog" aria-labelledby="createModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLongTitle">Add Member Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row p-1">
+                    <label class="text-dark">Enter Member Type:&emsp;</label>
+                    <input type="text" class="col-6" id="memberTypeField" required />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="createCall();">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/js/MemberTypeJS/memberType.js"></script>
+}

@@ -12,6 +12,10 @@ namespace LibrarySystem.Models.DataVM
         public string MemberGender { get; set; }
         public string MemberDOB { get; set; }
         public string StreetAddress { get; set; }
+        public string SSN { get; set; }
+        public string LibraryName { get; set; }
+        public string languagesKnown { get; set; }
+        public string OtherCountry { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public long PhoneNumber { get; set; }

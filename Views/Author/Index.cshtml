@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<LibrarySystem.Models.Author>
 
+@{
+    ViewData["Title"] = "Authors";
+}
 
 <div class="container p-3">
     <div class="row p-4">
         <div class="col-6">
-            <h2 class="text-primary">Authors List:</h2>
+            <h2 class="text-info">Authors</h2>
         </div>
         <div class="col-6 text-right">
             <a asp-controller="Author" asp-action="Create" class="btn btn-primary">Add New Author</a>
@@ -14,8 +17,8 @@
 
     @if (Model.Count() > 0)
     {
-        <table class="table table-bordered table-secondary table-striped">
-            <thead>
+        <table class="table table-bordered table-secondary table-striped small-font">
+            <thead class="thead-dark">
                 <tr>
                     <th>
                         Author Name
@@ -27,6 +30,11 @@
                         Phone Number
                     </th>
                     <th>
+                        Country
+                    </th><th>
+                        Expertise
+                    </th>
+                    <th>
                         Actions
                     </th>
                 </tr>
@@ -35,10 +43,12 @@
                 @foreach (var author in Model)
                 {
                     <tr>
-                        <td width="25%">@author.AuthorName</td>
-                        <td width="25%">@author.Email</td>
-                        <td width="25%">@author.PhoneNumber</td>
-                        <td width="25%">
+                        <td width="15%">@author.AuthorName</td>
+                        <td width="15%">@author.Email</td>
+                        <td width="15%">@author.PhoneNumber</td>
+                        <td width="15%">@author.AuthorCountry</td>
+                        <td width="10%">@author.AuthorExpertise</td>
+                        <td width="20%">
                             <div class="text-center btn-group w-100">
                                 <a class="btn btn-primary mx-1 text-white" asp-controller="Author" asp-action="Update" asp-route-Id="@author.AuthorId">Update</a>
                                 <a class="btn btn-danger mx-1 text-white" asp-controller="Author" asp-action="Delete" asp-route-Id="@author.AuthorId">Delete</a>

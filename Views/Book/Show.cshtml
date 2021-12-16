@@ -3,15 +3,14 @@
     ViewData["Title"] = "Book Details";
 }
 
-<h1>Book Details:</h1>
+<h1 class="text-info">Book Details:</h1>
 
 <div class="container center_div">
     <div class="row">
         <div class="col-md-6">
-            <form method="post" asp-action="DeletePost" autocomplete="off">
-
+            <form autocomplete="off">
+                <input asp-for="BookId" hidden disabled />
                 <input type="text" class="form-control" asp-for="isAvailable" style="display:none" disabled />
-                <input asp-for="BookId" hidden />
                 <div class="form-group form-row">
                     <label asp-for="BookName"></label>
                     <input type="text" class="form-control" asp-for="BookName" disabled />
@@ -43,8 +42,28 @@
                     </select>
                     <span asp-validation-for="AuthorId" class="text-danger"></span>
                 </div>
-
             </form>
+
+            <div>
+                @using (Html.BeginForm("Index", "BookAllocation", FormMethod.Get))
+                {
+                    @if (TempData["BName"].ToString() != "")
+                    {
+                        @Html.TextBox("BName", TempData["BName"], new { hidden = "hidden" })
+                    }
+                    @if (TempData["AName"].ToString() != "")
+                    {
+                        @Html.TextBox("AName", TempData["AName"], new { hidden = "hidden" })
+                    }
+                    <input type="submit" class="btn btn-primary text-white mx-2 row col-4" value="Back" />
+                }
+            </div>
         </div>
     </div>
 </div>
+
+
+@{
+    TempData.Keep("AName");
+    TempData.Keep("BName");
+}

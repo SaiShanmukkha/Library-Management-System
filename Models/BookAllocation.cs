@@ -35,5 +35,7 @@ namespace LibrarySystem.Models
         [ForeignKey("Book")]
         public int BookId { get; set; }
         public virtual Book Book { get; set; }
+        
+
     }
 }

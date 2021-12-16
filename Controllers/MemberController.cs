@@ -35,17 +35,20 @@ namespace LibrarySystem.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public IActionResult Create(MemberVM memberVM)
         {
             if (ModelState.IsValid)
             {
                 Member member = new();
                 member.MemberName = memberVM.MemberName;
+                member.OtherCountry = memberVM.OtherCountry;
                 member.MemberGender = memberVM.MemberGender;
                 member.PhoneNumber = memberVM.PhoneNumber;
+                member.SSN = memberVM.SSN;
+                member.LibraryName = memberVM.LibraryName;
+                member.languagesKnown = memberVM.languagesKnown;
                 member.Profession = memberVM.Profession;
-                member.Profession = memberVM.StreetAddress;
                 member.City = memberVM.City;
                 member.StreetAddress = memberVM.StreetAddress;
                 member.Country = memberVM.Country;
@@ -53,7 +56,8 @@ namespace LibrarySystem.Controllers
                 member.MemberDOB = DateTime.Parse(memberVM.MemberDOB);
                 _db.Members.Add(member);
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return Ok();
             }
             return View(memberVM);
         }
@@ -91,7 +95,6 @@ namespace LibrarySystem.Controllers
                 member.MemberGender = memberVM.MemberGender;
                 member.PhoneNumber = memberVM.PhoneNumber;
                 member.Profession = memberVM.Profession;
-                member.Profession = memberVM.StreetAddress;
                 member.City = memberVM.City;
                 member.StreetAddress = memberVM.StreetAddress;
                 member.Country = memberVM.Country;

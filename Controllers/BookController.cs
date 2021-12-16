@@ -89,6 +89,7 @@ namespace LibrarySystem.Controllers
         
         public IActionResult Show(int? id)
         {
+            
             if (id is <= 0 or null)
             {
                 return NotFound();

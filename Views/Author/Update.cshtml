@@ -1,13 +1,16 @@
 ﻿@model LibrarySystem.Models.Author
 
+@{
+    ViewData["Title"] = "Update Author";
+}
 
-<h1>Enter Author Details:</h1>
+<h1 class="text-info">Enter Author Details:</h1>
 
 <div class="container center_div">
     <div class="row">
         <div class="col-md-6">
             <form method="post" asp-action="Update" autocomplete="off">
-                <input asp-for="AuthorId" hidden/>
+                <input asp-for="AuthorId" hidden />
                 <div class="form-group form-row">
                     <label asp-for="AuthorName"></label>
                     <input type="text" class="form-control" asp-for="AuthorName" />

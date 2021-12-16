@@ -33,6 +33,15 @@ namespace LibrarySystem.Models
         [Required]
         public string StreetAddress { get; set; }
 
+
+        public string SSN { get; set; }
+
+        public string languagesKnown { get; set; }
+
+        public string LibraryName { get; set; }
+
+        public string OtherCountry { get; set; }
+
         [Required]
         public string City { get; set; }
 
@@ -53,5 +62,9 @@ namespace LibrarySystem.Models
         [Required]
         public string Profession { get; set; }
 
+        [ForeignKey("MemberType")]
+        public int? MemberTypeId { get; set; }
+
+        public virtual MemberType MemberType { get; set; }
     }
 }

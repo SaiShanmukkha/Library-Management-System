@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<LibrarySystem.Models.Book>
 
 
+@{
+    ViewData["Title"] = "Books";
+}
 <div class="container p-3">
     <div class="row p-4">
         <div class="col-6">
-            <h2 class="text-primary">Books List:</h2>
+            <h2 class="text-info">Books</h2>
         </div>
         <div class="col-6 text-right">
             <a asp-controller="Book" asp-action="Create" class="btn btn-primary">Add New Book</a>
@@ -14,17 +17,25 @@
 
     @if (Model.Count() > 0)
     {
-        <table class="table table-bordered table-secondary table-striped">
-            <thead>
+        <table class="table table-bordered table-secondary table-striped small-font">
+            <thead class="thead-dark">
                 <tr>
                     <th>
                         Book Name
                     </th>
                     <th>
-                       Book Language
+                        Book Language
                     </th>
                     <th>
                         Year Published
+                    </th>
+                    <th>
+                        Edition
+                    </th><th>
+                       Publisher
+                    </th>
+                    <th>
+                       Availability
                     </th>
                     <th>
                         Actions
@@ -35,12 +46,22 @@
                 @foreach (var book in Model)
                 {
                     <tr>
-                        <td width="25%">@book.BookName</td>
-                        <td width="25%">@book.BookLanguage</td>
-                        <td width="25%">@book.BookYear</td>
-                        <td width="25%">
+                        <td width="20%">@book.BookName</td>
+                        <td width="10%">@book.BookLanguage</td>
+                        <td width="10%">@book.BookYear</td>
+                        <td width="5%">@book.BookEdition</td>
+                        <td width="20%">@book.BookPublisher</td>
+                        @if (book.isAvailable)
+                    {
+                        <td width="5%">Yes</td>
+                    }
+                    else
+                    {
+                        <td width="5%">No</td>
+                    }
+                        <td width="30%">
                             <div class="text-center btn-group w-100">
-                                <a class="btn btn-primary mx-1 text-white" asp-controller="Book" asp-action="Update" asp-route-Id="@book.BookId">Update</a>
+                               <a class="btn btn-primary mx-1 text-white" asp-controller="Book" asp-action="Update" asp-route-Id="@book.BookId">Update</a>
                                 <a class="btn btn-danger mx-1 text-white" asp-controller="Book" asp-action="Delete" asp-route-Id="@book.BookId">Delete</a>
                             </div>
                         </td>

@@ -98,10 +98,10 @@ namespace LibrarySystem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(Author Author)
+        public IActionResult DeletePost(Author auth)
         {
-            int id = Author.AuthorId;
-            Author author = _db.Authors.Find(id);
+
+            Author author = _db.Authors.Find(auth.AuthorId);
 
             _db.Authors.Remove(author);
             _db.SaveChanges();

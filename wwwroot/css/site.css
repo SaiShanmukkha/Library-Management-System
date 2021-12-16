@@ -10,6 +10,10 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.head-label {
+    font-size:larger;
+    font-weight: 900;
+}
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -57,8 +61,8 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -71,4 +75,57 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+
+
+/* Font Sizes for tables and buttons*/
+.small-font {
+    font-size: 13px;
+}
+
+.custom-bg {
+    background-color: #2a2b2b;
+}
+
+p, label{
+    color: white;
+}
+
+
+/* For Notification Button*/
+.icon-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    color: #333333;
+    background: #dddddd;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+}
+
+    .icon-button:hover {
+        cursor: pointer;
+    }
+
+    .icon-button:active {
+        background: #cccccc;
+    }
+
+.icon-button__badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 25px;
+    height: 25px;
+    background: red;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 }

@@ -1,6 +1,8 @@
 ﻿@model LibrarySystem.Models.BookAllocation
-
-<h1>Book Allotment:</h1>
+@{
+    ViewData["Title"] = "Book Allocation Issue";
+}
+<h1 class="text-info">Book Allotment:</h1>
 
 <div class="container center_div">
     <div class="row">
@@ -9,12 +11,12 @@
                 <input type="text" class="form-control" asp-for="IsBookSubmitted" value="false" style="display:none" />
                 <div class="form-group form-row">
                     <label>Book Id:</label>
-                    <input type="text" class="form-control" asp-for="BookId" value="@ViewBag.BookData.BookId" readonly/>
+                    <input type="text" class="form-control" asp-for="BookId" value="@ViewBag.BookData.BookId" readonly />
                 </div>
-                
+
                 <div class="form-group form-row">
                     <label>Book Name:</label>
-                    <input type="text" class="form-control" value="@ViewBag.BookData.BookName" readonly/>
+                    <input type="text" class="form-control" value="@ViewBag.BookData.BookName" readonly />
                 </div>
 
                 <div class="form-group form-row">
@@ -24,23 +26,41 @@
 
                 <div class="form-group form-row">
                     <label>Issue Date:</label>
-                    <input type="datetime" class="form-control" asp-for="IssueDate" value="@DateTime.Now" readonly/>
+                    <input type="datetime" class="form-control" asp-for="IssueDate" value="@DateTime.Now" readonly />
                 </div>
 
                 <div class="form-group form-row">
                     <label>Due Date:</label>
-                    <input type="datetime" class="form-control" asp-for="DueDate" value="@DateTime.Now.AddDays(7)" readonly/>
+                    <input type="datetime" class="form-control" asp-for="DueDate" value="@DateTime.Now.AddDays(7)" readonly />
                 </div>
 
                 <div class="form-group form-row">
-                    <div class="col-6">
+                    <div class="col-5 mx-2">
                         <input type="submit" class="btn btn-danger w-75" value="Allocate" />
-                    </div>
-                    <div class="col-6">
-                        <a class="nav-link text-white w-75 btn btn-success" asp-area="" asp-controller="BookAllocation" asp-action="Index">Back</a>
                     </div>
                 </div>
             </form>
+            <div>
+                @using (Html.BeginForm("Index", "BookAllocation", FormMethod.Get))
+                {
+                    @if (TempData["BName"].ToString() != "")
+                    {
+                        @Html.TextBox("BName", TempData["BName"], new { hidden = "hidden" })
+                    }
+                    @if (TempData["AName"].ToString() != "")
+                    {
+                        @Html.TextBox("AName", TempData["AName"], new { hidden = "hidden" })
+                    }
+                    <input type="submit" class="btn btn-primary text-white row mx-2 col-4" value="Back" />
+                }
+            </div>
         </div>
     </div>
 </div>
+
+
+@{
+    TempData.Keep("AName");
+    TempData.Keep("BName");
+}
+
