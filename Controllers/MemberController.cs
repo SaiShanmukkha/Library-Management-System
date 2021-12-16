@@ -52,6 +52,8 @@ namespace LibrarySystem.Controllers
                 member.City = memberVM.City;
                 member.StreetAddress = memberVM.StreetAddress;
                 member.Country = memberVM.Country;
+                member.OtherCountry = memberVM.OtherCountry;
+                member.MemberTypeId = memberVM.MemberTypeId;
                 member.Email = memberVM.Email;
                 member.MemberDOB = DateTime.Parse(memberVM.MemberDOB);
                 _db.Members.Add(member);
@@ -100,6 +102,7 @@ namespace LibrarySystem.Controllers
                 member.Country = memberVM.Country;
                 member.Email = memberVM.Email;
                 member.MemberDOB = DateTime.Parse(memberVM.MemberDOB);
+                member.OtherCountry = memberVM.OtherCountry;
                 _db.Members.Update(member);
                 _db.SaveChanges();
                 return RedirectToAction("Index");

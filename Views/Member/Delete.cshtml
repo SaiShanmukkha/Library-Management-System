@@ -14,43 +14,47 @@
                 <input asp-for="MemberId" hidden />
                 <div class="form-group form-row">
                     <label asp-for="MemberName"></label>
-                    <input type="text" class="form-control" asp-for="MemberName" disabled />
+                    <input type="text" class="form-control" asp-for="MemberName" readonly />
                     <span asp-validation-for="MemberName" class="text-danger"></span>
                 </div>
                 <div class="form-group form-row">
                     <label asp-for="MemberGender"></label>
-                    <select type="text" class="form-control" asp-for="MemberGender" disabled>
+                    <select type="text" class="form-control" asp-for="MemberGender" readonly>
                         <option>Male</option>
                         <option>Female</option>
                     </select>
                 </div>
                 <div class="form-group form-row">
                     <label asp-for="MemberDOB"></label>
-                    <input type="date" class="form-control" asp-for="MemberDOB" disabled />
+                    <input type="date" class="form-control" asp-for="MemberDOB" readonly />
                 </div>
                 <div class="form-group form-row">
                     <label asp-for="PhoneNumber"></label>
-                    <input type="number" class="form-control" asp-for="PhoneNumber" maxlength="10" disabled />
+                    <input type="number" class="form-control" asp-for="PhoneNumber" maxlength="10" readonly />
                 </div>
                 <div class="form-group form-row">
                     <label asp-for="Email"></label>
-                    <input type="text" class="form-control" asp-for="Email" disabled />
+                    <input type="text" class="form-control" asp-for="Email" readonly />
                 </div>
                 <div class="form-group form-row">
                     <label asp-for="Profession"></label>
-                    <input type="text" class="form-control" asp-for="Profession" disabled />
+                    <input type="text" class="form-control" asp-for="Profession" readonly />
                 </div>
                 <div class="form-group form-row">
                     <label asp-for="StreetAddress"></label>
-                    <input class="form-control" asp-for="StreetAddress" disabled />
+                    <input class="form-control" asp-for="StreetAddress" readonly />
                 </div>
                 <div class="form-group form-row">
                     <label asp-for="City"></label>
-                    <input type="text" class="form-control" asp-for="City" disabled />
+                    <input type="text" class="form-control" asp-for="City" readonly />
                 </div>
                 <div class="form-group form-row">
                     <label asp-for="Country"></label>
-                    <input type="text" class="form-control" asp-for="Country" disabled />
+                    <input type="text" class="form-control" asp-for="Country" readonly />
+                </div>
+                <div class="form-group form-row" id="OtherCountryBlock" style="display: none;">
+                    <label asp-for="OtherCountry"></label>
+                    <input type="text" class="form-control" asp-for="OtherCountry" readonly/>
                 </div>
 
                 @*<div asp-validation-summary="All" class="text-danger"></div>*@
@@ -69,4 +73,9 @@
 
 @section Scripts{
     <script src="~/js/MemberJs/member.js"></script>
+    <script type="text/javascript">
+        if ($("#Country").val() == "Other") {
+            $("#OtherCountryBlock").show();
+        }
+    </script>
 }

@@ -2,22 +2,63 @@
   getMemberTypeTable();
 });
 
-function updateCall(obj) {}
+function viewUpdateModal(memberTypeId){    
+    $("#updateMemberTypeIdField").val(memberTypeId);
+    $.ajax({
+        url:"/api/membertype/getmembertype/"+memberTypeId,
+        type:"get",
+        success:function(res){
+            $("#updateMemberTypeField").val(res.memberTypeName);
+        },
+        error:function(res){
+            $("#updateModalCenter").modal('hide');
+            $.notify("Error Occured");
+        }
+    });    
+    $("#updateModalCenter").modal('show');
+}
 
-function createCall() {
-  var memberTypeName = $("#memberTypeField").val();
-  if (memberTypeName.trim() != "") {
+function updateCall() {
+    var memberTypeId = $("#updateMemberTypeIdField").val();
+    var memberTypeName = $("#updateMemberTypeField").val();
+  if (memberTypeName.trim() != "" && memberTypeId > 0) {
     var data = {
-      MemberTypeName: memberTypeName,
-     MemberTypeId:1
+      MemberTypeId: memberTypeId,
+      MemberTypeName: memberTypeName
     };
     $.ajax({
-      url: "/api/membertype/createMemberType/",
+      url: "/api/membertype/updateMemberType",
       type: "post",
       contentType:"application/json",
-      data: data,
+      data: JSON.stringify(data),
+      success: function () {
+        $.notify("Updated Successfully", "success");
+        getMemberTypeTable();
+      },
+      error: function (data) {
+        $.notify("Error Occured", "danger");
+      },
+    });
+  }else{
+      $.notify("Something went wrong,unable to Modify","Warning");
+  }
+  $("#updateModalCenter").modal("hide");  
+}
+
+function createCall() {
+  var memberTypeName = $("#createMemberTypeField").val();
+  if (memberTypeName.trim() != "") {
+    var data = {
+      MemberTypeName: memberTypeName
+    };
+    $.ajax({
+      url: "/api/membertype/createMemberType",
+      type: "post",
+      contentType:"application/json",
+      data: JSON.stringify(data),
       success: function () {
         $.notify("Created Successfully", "success");
+        $("#createMemberTypeField").val("");
         getMemberTypeTable();
       },
       error: function (data) {
@@ -51,7 +92,7 @@ function getMemberTypeTable() {
     url: "/api/membertype/getmembertypes",
     success: function (res) {
       var memberTypeTable = `
-                <table class="table table-bordered table-secondary table-responsive-xl table-striped small-font">
+                <table class="table table-bordered table-secondary table-striped small-font">
         <thead class="thead-dark text-center">
             <tr>
                 <th style="width:60%">MemberType</th>
@@ -65,13 +106,13 @@ function getMemberTypeTable() {
                 <tr>
                     <td>${res[i]["memberTypeName"]}</td>
                     <td class="text-center">
-                        <button class="btn-sm btn-outline-success" type="button" value=${res[i]} data-toggle="modal" data-target="#exampleModalCenter" title="Update">
+                        <button class="btn-sm btn-outline-success" type="button" onclick="viewUpdateModal(${res[i]["memberTypeId"]}, ${res[i]["memberTypeId"]});" value=${res[i]["memberTypeId"]} title="Update">
                             <span class="material-icons">
                                 upgrade
                             </span>
                         </button>
 
-                        <button class="btn-sm btn-outline-danger" onclick="deleteCall(${res[i]["memberTypeId"]});" value=${res[i]["memberTypeId"]} type="button" title="Delete">
+                        <button class="btn-sm btn-outline-danger" type="button" onclick="deleteCall(${res[i]["memberTypeId"]});" value=${res[i]["memberTypeId"]} type="button" title="Delete">
                             <span class="material-icons">
                                 delete_forever
                             </span>

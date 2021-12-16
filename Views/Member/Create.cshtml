@@ -68,8 +68,8 @@
 
                 <div class="form-group form-row">
                     <label asp-for="MemberTypeId" class="head-label"></label>
-                    <select id="MemberTypeId" type="text" class="form-control" asp-for="MemberTypeId">
-                        <option value="0">--Select--</option>
+                    <select id="MemberTypeSelect" type="text" class="form-control" asp-for="MemberTypeId">
+                        
                     </select>
                     <span asp-validation-for="MemberTypeId" class="text-danger"></span>
                 </div>
@@ -174,7 +174,6 @@
 @section Scripts{
     @{
         <partial name="_ValidationScriptsPartial" />
-
     }
     <script src="~/js/MemberJs/member.js"></script>
 }

@@ -56,7 +56,7 @@ namespace LibrarySystem.Controllers.APIControllers
             return Ok(memberType);
         }
 
-        [HttpPatch("updateMemberType")]
+        [HttpPost("updateMemberType")]
         public IActionResult UpdateMemberType(MemberType memberType)
         {
             if (memberType == null)

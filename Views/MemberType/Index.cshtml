@@ -17,7 +17,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 col-md-8" id="memberTypeTable">
+        <div class="col-sm-12 col-md-8 col-lg-5" id="memberTypeTable">
 
         </div>
     </div>
@@ -40,12 +40,39 @@
             <div class="modal-body">
                 <div class="row p-1">
                     <label class="text-dark">Enter Member Type:&emsp;</label>
-                    <input type="text" class="col-6" id="memberTypeField" required />
+                    <input type="text" class="col-6" id="createMemberTypeField" autocomplete="off" required />
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick="createCall();">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Update Modal for MemberType -->
+
+<div class="modal fade" id="updateModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLongTitle">Update Member Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row p-1">
+                    <input type="number" id="updateMemberTypeIdField" hidden />
+                    <label class="text-dark">Enter Member Type:&emsp;</label>
+                    <input type="text" class="col-6" id="updateMemberTypeField" autocomplete="off" required />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" onclick="updateCall();">Update</button>
             </div>
         </div>
     </div>

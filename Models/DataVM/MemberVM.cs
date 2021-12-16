@@ -21,5 +21,6 @@ namespace LibrarySystem.Models.DataVM
         public long PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Profession { get; set; }
+        public int MemberTypeId { get; set; }
     }
 }

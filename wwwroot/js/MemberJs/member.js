@@ -23,6 +23,26 @@
     });
 
     
+        $.ajax({
+          type: "Get",
+          url: "/api/membertype/getmembertypes",
+          async: false,
+          success: function (response) {
+            if (response.length > 0) {
+              $("#MemberTypeSelect").html("");
+                var options = `<option hidden selected>Select one...</option>`;
+              for (var i = 0; i < response.length; i++) {
+                options +=
+                  '<option value="'+response[i]["memberTypeId"]+'">'+response[i]["memberTypeName"]+"</option>";
+              }
+              $("#MemberTypeSelect").append(options);
+            }
+          },
+          error: function (e) {
+            $.notify("errror occured while fetching MemberTypes","warn");
+          },
+        });
+      
 
     //$("#memberSubmit").click(function () {
     //    var lk = "";
@@ -148,6 +168,7 @@ function selldata() {
         PhoneNumber: $("#PhoneNumber").val(),
         Email : $("#Email").val(),
         Profession: $("#Profession").val(),
+        MemberTypeId: $("#MemberTypeSelect").val(),
     };
 
     $.ajax({
