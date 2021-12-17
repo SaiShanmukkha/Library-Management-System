@@ -28,7 +28,7 @@ namespace LibrarySystem.Controllers.APIControllers
             {
                 return BadRequest();
             }
-            _db.MemberTypes.Update(memberType);
+            _db.MemberTypes.Add(memberType);
             _db.SaveChanges();
             return Ok();
         }
