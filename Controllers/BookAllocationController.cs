@@ -5,9 +5,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Text.Json;
+using System.Text;
 
 namespace LibrarySystem.Controllers
 {
@@ -254,6 +258,52 @@ namespace LibrarySystem.Controllers
         //    var history = _db.BookAllocations.Where(x => x.MemberId == id).ToList();
         //    return View(history);
         //}
+
+        // public IActionResult Making_GET_ApICall(){
+        //     string url = @"https://localhost:44320/api/professionAPI";
+        //     IEnumerable<MemberType> obj = null;
+        //     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        //     request.Method = "GET";
+        //     HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        //     // getting Data from Response after making call
+        //     Stream stream = response.GetResponseStream();
+        //     StreamReader reader = new StreamReader(stream);
+        //     var data = reader.ReadToEnd();
+        //     obj = JsonSerializer.Deserialize<List<Profession>>(data, new JsonSerializerOptions { PropertyNameCaseInsensitive=true});
+        //     return View(obj);
+        // }
+
+
+        // public IActionResult Making_POST_APICall(){
+        //     string url = @"https://localhost:44320/api/professionAPI/AddEmployee";
+        //     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        //     request.Method = "POST";
+        //     var jsonData = JsonSerializer.Serialize(Obj);
+        //     byte[] byteArray = Encoding.UTF8.GetBytes(jsonData);
+        //     var requestStream = request.GetRequestStream();
+        //     requestStream.Write(byteArray, 0, byteArray.Length);
+        //     request.ContentType = "application/json";
+        //     request.ContentLength = byteArray.Length;
+        //     // Retrieving Data from Response After API Call
+        //     HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        //     Stream stream = response.GetResponseStream();
+        //     StreamReader reader = new StreamReader(stream);
+        //     var data = reader.ReadToEnd();
+        //     return RedirectToAction("Index");
+        // }
+
+        // API Method to send Http Response Message
+        // [HttpPost("AddEmployee")]
+        // public HttpResponseMessage createProfession(Profession profession)
+        // {
+        //     if(profession == null)
+        //     {
+        //         return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+        //     }
+        //     _db.Professions.Add(profession);
+        //     _db.SaveChanges();
+        //     return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+        // }
 
     }
 }

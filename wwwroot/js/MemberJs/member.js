@@ -162,7 +162,7 @@ function selldata() {
         SSN : $("#SSN").val(),
         LibraryName: $("#LibraryName").val(),
         languagesKnown: $("#languagesKnown").val(),
-        OtherCountry: $("#OtherCountry").val(),
+        OtherCountry: $("#OtherCountryField").val(),
         City: $("#City").val(),                                         
         Country: $("#countrySelect").val(),
         PhoneNumber: $("#PhoneNumber").val(),
